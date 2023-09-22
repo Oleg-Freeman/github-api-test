@@ -1,4 +1,5 @@
 {
   "test": "schema",
-  "update": "success"
+  "update": "success",
+  "anotherupdate": "success"
 }
