@@ -8,9 +8,11 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Test
-        run: echo "Test Step"
-        shell: bash
-      - name: Log Push Event
-        run: echo ${{ toJson(github.event) }}
-        shell: bash
+      - name: Checkout code
+        uses: actions/checkout@master
+        with:
+          fetch-depth: 0
+      - name: Modified files
+        run: |
+          git fetch origin master:master
+          git diff --name-only --diff-filter=d master~ master
