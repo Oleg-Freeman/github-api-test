@@ -14,7 +14,10 @@ jobs:
           fetch-depth: 0
       - name: Modified files
         run: |
-          git diff --name-only --diff-filter=d master~ master
+          MODIFIED_FILES=$(git diff --name-only --diff-filter=d master~ master | cat)
       - name: Deleted files
         run: |
           git diff --name-only --diff-filter=D master~ master
+      - name: Print Modified Files
+        run: |
+          echo $MODIFIED_FILES
