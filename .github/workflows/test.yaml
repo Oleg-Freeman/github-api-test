@@ -18,9 +18,3 @@ jobs:
       - name: Deleted files
         run: |
           git diff --name-only --diff-filter=D master~ master
-      - name: Added files
-        run: |
-          git diff --name-only --diff-filter=A master~ master
-      - name: Renamed files
-        run: |
-          git diff --name-only --diff-filter=R master~ master
