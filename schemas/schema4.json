@@ -1,5 +1,6 @@
 {
   "test": "schema",
   "update": "success",
-  "anotherupdate": "success"
+  "anotherupdate": "success",
+  "testActions": "push"
 }
