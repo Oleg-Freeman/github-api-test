@@ -1,0 +1,16 @@
+name: Test
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test
+        run: echo "Test Step"
+        shell: bash
+      - name: Log Push Event
+        run: echo ${{ toJson(github.event) }}
+        shell: bash
