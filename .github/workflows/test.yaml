@@ -14,5 +14,4 @@ jobs:
           fetch-depth: 0
       - name: Modified files
         run: |
-          git fetch origin master:master
           git diff --name-only --diff-filter=d master~ master
