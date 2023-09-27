@@ -14,7 +14,11 @@ jobs:
           fetch-depth: 0
       - name: Modified files
         run: >
+          # Get list of modified schemas
+          # and modify output to return file paths only
           echo $(git ls-tree -r HEAD schemas | awk '{print $4}') |
+          # Remove newline from end of string
           head -c -1 |
+          # Split string into array
           jq -R -s -c 'split(" ")'
         shell: bash
