@@ -14,9 +14,6 @@ jobs:
           fetch-depth: 0
       - name: Modified files
         run: >
-          git ls-tree -r HEAD schemas | 
-          awk '{print $4}' | 
-          awk -v RS=  '{$1=$1}1' | 
-          tr -d '\n' |
+          echo $(git ls-tree -r HEAD schemas | awk '{print $4}') |
           jq -R -s -c 'split(" ")'
         shell: bash
