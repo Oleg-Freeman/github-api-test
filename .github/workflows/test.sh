@@ -2,7 +2,7 @@
 
 echo "Script Started"
 
-GIT_FILES_LIST=git ls-tree -r HEAD schemas | awk '{print $4}'
+GIT_FILES_LIST=$(git ls-tree -r HEAD schemas | awk '{print $4}')
 
 SCHEMAS=$(echo "$GIT_FILES_LIST" | \
           head -c -1 | \
