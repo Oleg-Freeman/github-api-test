@@ -19,4 +19,4 @@ jobs:
           jq -R -s -c 'split(" ")'
         shell: bash
       - name: Test Bash Script
-        run: ./test.sh
+        run: ${PWD}/test.sh
