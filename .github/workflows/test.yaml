@@ -19,4 +19,4 @@ jobs:
           jq -R -s -c 'split(" ")'
         shell: bash
       - name: Test Bash Script
-        run: ${PWD}/test.sh
+        run: ${PWD}/.github/workflows/test.sh
