@@ -17,5 +17,6 @@ jobs:
           git ls-tree -r HEAD schemas | 
           awk '{print $4}' | 
           awk -v RS=  '{$1=$1}1' | 
+          xargs |
           jq -R -s -c 'split(" ")'
         shell: bash
