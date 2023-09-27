@@ -13,4 +13,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Modified files
-        run: bash ${PWD}/.github/workflows/test.sh
+        env:
+          SERVER_URL: ${{ secrets.SERVER_URL }}
+        run: SERVER_URL=$SERVER_URL bash ${PWD}/.github/workflows/test.sh
+

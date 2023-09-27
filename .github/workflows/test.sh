@@ -13,11 +13,9 @@ PAYLOAD=$(for i in $GIT_FILES_LIST; do
       '{"path": $path, "updatedAt": $updatedAt, "author": $author}'
 done | jq -n '.items |= [inputs]')
 
-#echo "$PAYLOAD"
-
 curl -X POST \
     -H "Accept: application/json" \
-    https://httpbin.org/post \
+    "$SERVER_URL" \
     -d "$PAYLOAD"
 
 $SHELL
