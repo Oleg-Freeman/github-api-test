@@ -1,14 +1,23 @@
 #!/bin/bash
 
-echo "Script Started"
-
 GIT_FILES_LIST=$(git ls-tree -r HEAD schemas | awk '{print $4}')
 
-SCHEMAS=$(echo "$GIT_FILES_LIST" | \
-          head -c -1 | \
-          jq -R -s -c 'split(" ")')
+PAYLOAD=$(for i in $GIT_FILES_LIST; do
+    LAST_MODIFIED_DATE=$(git log -1 --pretty="format:%ci" $i)
+    AUTHOR=$(git log -1 --pretty="format:%an" $i)
 
-echo "$GIT_FILES_LIST"
-echo "$SCHEMAS"
+    jq --null-input \
+      --arg path "$i" \
+      --arg updatedAt "$LAST_MODIFIED_DATE" \
+      --arg author "$AUTHOR" \
+      '{"path": $path, "updatedAt": $updatedAt, "author": $author}'
+done | jq -n '.items |= [inputs]')
 
-echo "Script Ended"
+#echo "$PAYLOAD"
+
+curl -X POST \
+    -H "Accept: application/json" \
+    https://httpbin.org/post \
+    -d "$PAYLOAD"
+
+$SHELL
