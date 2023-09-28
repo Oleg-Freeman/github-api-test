@@ -16,4 +16,10 @@ jobs:
         env:
           SERVER_URL: ${{ secrets.SERVER_URL }}
         run: SERVER_URL=$SERVER_URL bash ${PWD}/.github/workflows/test.sh
+      - name: Produce Error
+        run: exit 1
+      - name: retry action
+        uses: Wandalen/wretry.action@v1.3.0
+
+
 
